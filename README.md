@@ -1,4 +1,4 @@
-# Data Vault 2.0 Implementation - Superstore Dataset
+# Data Vault 2.0 Implementation
 
 **HSE University | Системы хранения данных | Итоговое задание модуль 5**
 
