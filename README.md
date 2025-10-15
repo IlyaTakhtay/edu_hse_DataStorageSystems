@@ -130,8 +130,8 @@ data_vault_superstore/
 | | hub_ship_mode | 4 | Режимы доставки |
 | **Links** | link_product_hierarchy | 17 | Связи продукт → категория (1:1) |
 | | link_order_line | 6,868 | Уникальные комбинации заказов |
-| **Satellites** | sat_location_details | 632 | Детали локаций (1 postal_code = 2 cities) |
+| **Satellites** | sat_location_details | 632 | Детали локаций |
 | | sat_product_category | 17 | Привязка продуктов к категориям |
-| | sat_order_line_metrics | 9,977 | Метрики заказов (17 дублей hashdiff удалены) |
+| | sat_order_line_metrics | 9,977 | Метрики заказов |
 
 ---
