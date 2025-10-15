@@ -1,0 +1,96 @@
+erDiagram
+    HUB_LOCATION {
+        varchar32 location_hkey PK
+        varchar60 country
+        varchar10 postal_code
+        timestamp load_date
+        varchar50 record_source
+    ***REMOVED***
+    
+    HUB_PRODUCT {
+        varchar32 product_hkey PK
+        varchar50 sub_category
+        timestamp load_date
+        varchar50 record_source
+    ***REMOVED***
+    
+    HUB_CATEGORY {
+        varchar32 category_hkey PK
+        varchar50 category_name
+        timestamp load_date
+        varchar50 record_source
+    ***REMOVED***
+    
+    HUB_SHIP_MODE {
+        varchar32 ship_mode_hkey PK
+        varchar20 ship_mode_name
+        timestamp load_date
+        varchar50 record_source
+    ***REMOVED***
+    
+    HUB_SEGMENT {
+        varchar32 segment_hkey PK
+        varchar20 segment_name
+        timestamp load_date
+        varchar50 record_source
+    ***REMOVED***
+    
+    SAT_LOCATION_DETAILS {
+        varchar32 location_hkey FK
+        timestamp load_date
+        timestamp load_end_date
+        varchar100 city
+        varchar50 state
+        varchar20 region
+        varchar32 hash_diff
+        varchar50 record_source
+    ***REMOVED***
+    
+    SAT_PRODUCT_CATEGORY {
+        varchar32 product_hkey FK
+        timestamp load_date
+        timestamp load_end_date
+        varchar32 category_hkey
+        varchar32 hash_diff
+        varchar50 record_source
+    ***REMOVED***
+    
+    LINK_PRODUCT_HIERARCHY {
+        varchar32 hierarchy_hkey PK
+        varchar32 product_hkey FK
+        varchar32 category_hkey FK
+        timestamp load_date
+        varchar50 record_source
+    ***REMOVED***
+    
+    LINK_ORDER_LINE {
+        varchar32 order_line_hkey PK
+        varchar32 location_hkey FK
+        varchar32 product_hkey FK
+        varchar32 ship_mode_hkey FK
+        varchar32 segment_hkey FK
+        timestamp load_date
+        varchar50 record_source
+    ***REMOVED***
+    
+    SAT_ORDER_LINE_METRICS {
+        varchar32 order_line_hkey FK
+        timestamp load_date
+        timestamp load_end_date
+        numeric12-2 sales
+        smallint quantity
+        numeric5-2 discount
+        numeric12-2 profit
+        varchar32 hash_diff
+        varchar50 record_source
+    ***REMOVED***
+    
+    HUB_LOCATION ||--o{ SAT_LOCATION_DETAILS : has
+    HUB_PRODUCT ||--o{ SAT_PRODUCT_CATEGORY : has
+    HUB_PRODUCT ||--o{ LINK_PRODUCT_HIERARCHY : contains
+    HUB_CATEGORY ||--o{ LINK_PRODUCT_HIERARCHY : classifies
+    HUB_LOCATION ||--o{ LINK_ORDER_LINE : located_in
+    HUB_PRODUCT ||--o{ LINK_ORDER_LINE : contains
+    HUB_SHIP_MODE ||--o{ LINK_ORDER_LINE : shipped_via
+    HUB_SEGMENT ||--o{ LINK_ORDER_LINE : ordered_by
+    LINK_ORDER_LINE ||--o{ SAT_ORDER_LINE_METRICS : has_metrics
