@@ -1,6 +1,3 @@
-Окей, вот чистый README целиком для копирования:
-
-```markdown
 # Data Vault 2.0 Implementation - Superstore Dataset
 
 **HSE University | Системы хранения данных | Итоговое задание модуль 5**
@@ -150,4 +147,3 @@ data_vault_superstore/
 | | sat_order_line_metrics | 9,977 | Метрики заказов (17 дублей hashdiff удалены) |
 
 ---
-```
