@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 def main():
     csv_path = SOURCE_PATH
 
-    logger.info(f"Starting ETL pipeline with source: {csv_path***REMOVED***")
+    logger.info(f"Starting ETL pipeline with source: {csv_path}")
 
     try:
         conn = get_connection()
@@ -34,11 +34,11 @@ def main():
         print_table_stats(conn)
 
         conn.close()
-        logger.info(f"ETL pipeline completed. Processed {rows***REMOVED*** rows")
+        logger.info(f"ETL pipeline completed. Processed {rows} rows")
         return 0
 
     except Exception as e:
-        logger.error(f"ETL pipeline failed: {e***REMOVED***", exc_info=True)
+        logger.error(f"ETL pipeline failed: {e}", exc_info=True)
         return 1
 
 

@@ -1,14 +1,16 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+DB_CONFIG = {
+    "host": ***REMOVED***,
+    "port": 6432,
+    "database": "hse",
+    "user": "student47",
+    "password": ***REMOVED***,
+    "options": "-c search_path=student47",  # автоматически использовать схему student47
+}
 
-***REMOVED***
 
-***REMOVED***
+RECORD_SOURCE = "SampleSuperstore_csv"  # Название источника загрузки
 
-***REMOVED***
+SCHEMA_NAME = "student47"
+
+SOURCE_PATH = "./SampleSuperstore.csv"
+

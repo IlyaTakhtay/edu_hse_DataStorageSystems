@@ -15,10 +15,10 @@ def get_connection():
     conn = psycopg2.connect(**DB_CONFIG)
     
     with conn.cursor() as cur:
-        cur.execute(f"SET search_path TO {SCHEMA_NAME***REMOVED***;")
+        cur.execute(f"SET search_path TO {SCHEMA_NAME};")
         conn.commit()
     
-    logger.debug(f"Connection established, schema set to {SCHEMA_NAME***REMOVED***")
+    logger.debug(f"Connection established, schema set to {SCHEMA_NAME}")
     return conn
 
 
@@ -32,7 +32,7 @@ def execute_sql(conn, sql):
 def execute_sql_file(conn, filepath):
     """Выполнить SQL из файла"""
     path = Path(filepath)
-    logger.debug(f"Executing SQL file: {path***REMOVED***")
+    logger.debug(f"Executing SQL file: {path}")
     
     with open(path, 'r', encoding='utf-8') as f:
         sql = f.read()
@@ -45,16 +45,16 @@ def execute_sql_file(conn, filepath):
 def print_table_stats(conn):
     """Вывести статистику по таблицам Data Vault"""
     query = f"""
-        SELECT 'Hubs' as layer, 'hub_location' as name, COUNT(*) FROM {SCHEMA_NAME***REMOVED***.hub_location
-        UNION ALL SELECT 'Hubs', 'hub_product', COUNT(*) FROM {SCHEMA_NAME***REMOVED***.hub_product
-        UNION ALL SELECT 'Hubs', 'hub_category', COUNT(*) FROM {SCHEMA_NAME***REMOVED***.hub_category
-        UNION ALL SELECT 'Hubs', 'hub_ship_mode', COUNT(*) FROM {SCHEMA_NAME***REMOVED***.hub_ship_mode
-        UNION ALL SELECT 'Hubs', 'hub_segment', COUNT(*) FROM {SCHEMA_NAME***REMOVED***.hub_segment
-        UNION ALL SELECT 'Links', 'link_product_hierarchy', COUNT(*) FROM {SCHEMA_NAME***REMOVED***.link_product_hierarchy
-        UNION ALL SELECT 'Links', 'link_order_line', COUNT(*) FROM {SCHEMA_NAME***REMOVED***.link_order_line
-        UNION ALL SELECT 'Satellites', 'sat_location_details', COUNT(*) FROM {SCHEMA_NAME***REMOVED***.sat_location_details
-        UNION ALL SELECT 'Satellites', 'sat_product_category', COUNT(*) FROM {SCHEMA_NAME***REMOVED***.sat_product_category
-        UNION ALL SELECT 'Satellites', 'sat_order_line_metrics', COUNT(*) FROM {SCHEMA_NAME***REMOVED***.sat_order_line_metrics
+        SELECT 'Hubs' as layer, 'hub_location' as name, COUNT(*) FROM {SCHEMA_NAME}.hub_location
+        UNION ALL SELECT 'Hubs', 'hub_product', COUNT(*) FROM {SCHEMA_NAME}.hub_product
+        UNION ALL SELECT 'Hubs', 'hub_category', COUNT(*) FROM {SCHEMA_NAME}.hub_category
+        UNION ALL SELECT 'Hubs', 'hub_ship_mode', COUNT(*) FROM {SCHEMA_NAME}.hub_ship_mode
+        UNION ALL SELECT 'Hubs', 'hub_segment', COUNT(*) FROM {SCHEMA_NAME}.hub_segment
+        UNION ALL SELECT 'Links', 'link_product_hierarchy', COUNT(*) FROM {SCHEMA_NAME}.link_product_hierarchy
+        UNION ALL SELECT 'Links', 'link_order_line', COUNT(*) FROM {SCHEMA_NAME}.link_order_line
+        UNION ALL SELECT 'Satellites', 'sat_location_details', COUNT(*) FROM {SCHEMA_NAME}.sat_location_details
+        UNION ALL SELECT 'Satellites', 'sat_product_category', COUNT(*) FROM {SCHEMA_NAME}.sat_product_category
+        UNION ALL SELECT 'Satellites', 'sat_order_line_metrics', COUNT(*) FROM {SCHEMA_NAME}.sat_order_line_metrics
         ORDER BY layer, name;
     """
     
@@ -64,5 +64,5 @@ def print_table_stats(conn):
     
     print("\nData Vault Statistics:")
     for layer, name, count in results:
-        print(f"{layer:<12***REMOVED*** {name:<30***REMOVED*** {count:>6***REMOVED*** rows")
+        print(f"{layer:<12} {name:<30} {count:>6} rows")
     print()

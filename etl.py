@@ -31,10 +31,10 @@ def load_staging(conn, csv_path):
     logger.info("Loading staging data")
     
     if not Path(csv_path).exists():
-        raise FileNotFoundError(f"CSV file not found: {csv_path***REMOVED***")
+        raise FileNotFoundError(f"CSV file not found: {csv_path}")
     
     df = pd.read_csv(csv_path)
-    logger.info(f"Loaded data from {csv_path***REMOVED***")
+    logger.info(f"Loaded data from {csv_path}")
     
     # Переименовываем колонки: "Ship Mode" -> "ship_mode"
     df.columns = df.columns.str.lower().str.replace(' ', '_').str.replace('-', '_')
@@ -55,7 +55,7 @@ def load_staging(conn, csv_path):
         cur.copy_from(buffer, 'stg_orders', sep='|', columns=list(df.columns), null='')
         conn.commit()
     
-    logger.info(f"Loaded {len(df)***REMOVED*** rows into staging")
+    logger.info(f"Loaded {len(df)} rows into staging")
     return len(df)
 
 
